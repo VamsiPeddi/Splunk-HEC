@@ -6,9 +6,9 @@ For this small project, I used a python Library named Faker to generte fake logs
 
 ### Code Walkthrough 
 
-1. fakedata.py - This class generates fake data with pre defined fields. It is initialized with number of fake records to be created.
+1. fakedata.py - This class generates fake data with pre defined fields. It is initialized with the number of fake records to be created.
 
-2. pyHEC.py - This class is used to establish a connection between Splunk HEC and our main program. It is initialized with our respective Splunk token and has a send() method to establish the connection. 
+2. pyHEC.py - This class is used to establish a connection between Splunk HEC and our main program. It is initialized with our respective Splunk token and URI and has a send() method to establish the connection. 
 ```
 def send(self, event, source, type, metadata=None):
         headers = {"Authorization": "Splunk " + self.token}
@@ -30,7 +30,7 @@ def send(self, event, source, type, metadata=None):
         )
 ```
 
-3. send_hec.py - This is the main class and uses fakedata.py and pyHEC.py to create fake data and send it to our respective Splunk HEC. I've also used a Decimal Encoder since I have generated fake latitude and longitude values. 
+3. send_hec.py - This is the main class and uses the classes fakedata.py and pyHEC.py to create fake data and send it to our respective Splunk HEC. I've also used a Decimal Encoder since I have generated fake latitude and longitude values that can't be stored in a dictionary. 
 
 ```
 num_records = 1000
@@ -49,7 +49,11 @@ for data in fakedata.gen_data():
     
 ```
 
-### Dashboard
+### Dashboards and Queries 
+
+Here is an example Splunk Query 
+
+![alt text](/Images/splunk-query.JPG)
 
 Here is an example Dashboard that was created with the fake data. 
 
