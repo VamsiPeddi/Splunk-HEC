@@ -4,6 +4,10 @@ For this small project, I used a python Library named Faker to generte fake logs
 
 ### Architecture
 
+The following diagram outlines the architecture. We send HTTP Events using Splunk HTTP Event Collector. 
+
+![alt text](/Images/splunkpy.png)
+
 ### Code Walkthrough 
 
 1. fakedata.py - This class generates fake data with pre defined fields. It is initialized with the number of fake records to be created.
